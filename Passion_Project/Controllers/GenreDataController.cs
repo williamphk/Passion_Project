@@ -43,6 +43,67 @@ namespace Passion_Project.Controllers
         }
 
         /// <summary>
+        /// Returns all Genres in the system associated with a particular anime.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all Genres in the database taking care of a particular anime
+        /// </returns>
+        /// <param name="id">Anime Primary Key</param>
+        /// <example>
+        /// GET: api/GenreData/ListGenresForAnime/1
+        /// </example>
+        [HttpGet]
+        [ResponseType(typeof(GenreDto))]
+        public IHttpActionResult ListGenresForAnime(int id)
+        {
+            List<Genre> Genres = db.Genres.Where(
+                g => g.Animes.Any(
+                    a => a.AnimeID == id)
+                ).ToList();
+            List<GenreDto> GenreDtos = new List<GenreDto>();
+
+            Genres.ForEach(g => GenreDtos.Add(new GenreDto()
+            {
+                GenreID = g.GenreID,
+                GenreName = g.GenreName
+            }));
+
+            return Ok(GenreDtos);
+        }
+
+
+        /// <summary>
+        /// Returns Genres in the system available for a particular anime.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all Genres in the database not taking care of a particular anime
+        /// </returns>
+        /// <param name="id">Anime Primary Key</param>
+        /// <example>
+        /// GET: api/GenreData/ListGenresAvailableForAnime/1
+        /// </example>
+        [HttpGet]
+        [ResponseType(typeof(GenreDto))]
+        public IHttpActionResult ListGenresAvailableForAnime(int id)
+        {
+            List<Genre> Genres = db.Genres.Where(
+                g => !g.Animes.Any(
+                    a => a.AnimeID == id)
+                ).ToList();
+            List<GenreDto> GenreDtos = new List<GenreDto>();
+
+            Genres.ForEach(g => GenreDtos.Add(new GenreDto()
+            {
+                GenreID = g.GenreID,
+                GenreName = g.GenreName
+            }));
+
+            return Ok(GenreDtos);
+        }
+
+        /// <summary>
         /// Returns a particular genre in the system.
         /// </summary>
         /// <returns>

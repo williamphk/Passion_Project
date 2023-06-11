@@ -1,0 +1,27 @@
+﻿@model Passion_Project.Models.AnimeDto
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Anime</h2>
+<form action="/Anime/Update/@Model.AnimeID" method="POST">
+    <div style="display:none;">
+        <input name="AnimeID" type="text" value="@Model.AnimeID" />
+    </div>
+    <div>
+        <label>Name:</label>
+        <input name="AnimeName" type="text" value="@Model.AnimeName" />
+    </div>
+    <div>
+        <label>Release Date:</label>
+        <input name="ReleaseDate" type="date" value="@Model.FormattedDate" />
+    </div>
+    <div>
+        <label>Description:</label>
+        <input name="Description" type="text" value="@Model.Description" />
+    </div>
+    <div>
+        <input type="submit" value="Update Anime" />
+    </div>
+</form>

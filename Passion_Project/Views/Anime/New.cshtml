@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create Anime</h2>
+<form action="/Anime/Create" method="POST">
+    <div>
+        <label>Name:</label>
+        <input name="AnimeName" type="text" />
+    </div>
+    <div>
+        <label>Release Date:</label>
+        <input name="ReleaseDate" type="date" />
+    </div>
+    <div>
+        <label>Description:</label>
+        <input name="Description" type="text" />
+    </div>
+    <div>
+        <input type="submit" value="Create Anime" />
+    </div>
+</form>
