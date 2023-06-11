@@ -1,0 +1,42 @@
+﻿@model Passion_Project.Models.ViewModels.NewReview
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create Review</h2>
+<form action="/Review/Create" method="POST">
+    <div>
+        <label>Rating:</label>
+        <input name="Rating" type="number" />
+    </div>
+    <div>
+        <label>Comment:</label>
+        <input name="Comment" type="text" />
+    </div>
+    <div>
+        <label>Review Date:</label>
+        <input name="ReviewDate" type="date" />
+    </div>
+    <div>
+        <label>Anime:</label>
+        <select name="AnimeID">
+            @foreach (var anime in Model.AnimeOptions)
+            {
+                <option value="@anime.AnimeID">@anime.AnimeName</option>
+            }
+        </select>
+    </div>
+    <div>
+        <label>Member:</label>
+        <select name="MemberID">
+            @foreach (var member in Model.MemberOptions)
+            {
+                <option value="@member.MemberID">@member.FirstName @member.LastName</option>
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Create Review" />
+    </div>
+</form>

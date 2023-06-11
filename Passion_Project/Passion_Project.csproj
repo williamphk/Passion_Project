@@ -190,6 +190,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\MemberDataController.cs" />
+    <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Controllers\ReviewDataController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -224,6 +225,8 @@
     <Compile Include="Models\Review.cs" />
     <Compile Include="Models\ViewModels\DetailsAnime.cs" />
     <Compile Include="Models\ViewModels\DetailsGenre.cs" />
+    <Compile Include="Models\ViewModels\NewReview.cs" />
+    <Compile Include="Models\ViewModels\UpdateReview.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -316,9 +319,16 @@
     <Content Include="Views\Member\Error.cshtml" />
     <Content Include="Views\Member\List.cshtml" />
     <Content Include="Views\Member\New.cshtml" />
+    <Content Include="Views\Review\DeleteConfirm.cshtml" />
+    <Content Include="Views\Review\Details.cshtml" />
+    <Content Include="Views\Review\Edit.cshtml" />
+    <Content Include="Views\Review\Error.cshtml" />
+    <Content Include="Views\Review\List.cshtml" />
+    <Content Include="Views\Review\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\ReviewDefault\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

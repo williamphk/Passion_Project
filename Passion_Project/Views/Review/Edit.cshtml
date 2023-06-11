@@ -1,0 +1,45 @@
+﻿@model Passion_Project.Models.ViewModels.UpdateReview
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Review</h2>
+<form action="/Review/Update/@Model.SelectedReview.ReviewID" method="POST">
+    <div style="display:none;">
+        <input name="ReviewID" type="text" value="@Model.SelectedReview.ReviewID" />
+    </div>
+    <div>
+        <label>Rating:</label>
+        <input name="Rating" type="text" value="@Model.SelectedReview.Rating" />
+    </div>
+    <div>
+        <label>Comment:</label>
+        <input name="Coment" type="text" value="@Model.SelectedReview.Comment" />
+    </div>
+    <div>
+        <label>Review Date:</label>
+        <input name="ReviewDate" type="date" value="@Model.SelectedReview.FormattedDate"/>
+    </div>
+    <div>
+        <label>Anime:</label>
+        <select name="AnimeID">
+            @foreach (var anime in Model.AnimeOptions)
+            {
+                <option value="@anime.AnimeID">@anime.AnimeName</option>
+            }
+        </select>
+    </div>
+    <div>
+        <label>Member:</label>
+        <select name="MemberID">
+            @foreach (var member in Model.MemberOptions)
+            {
+                <option value="@member.MemberID">@member.FirstName @member.LastName</option>
+            }
+        </select>
+    </div>
+    <div>
+        <input type="submit" value="Update Review" />
+    </div>
+</form>

@@ -1,0 +1,19 @@
+﻿@model Passion_Project.Models.ReviewDto
+@{
+    ViewBag.Title = "View";
+}
+
+<a href="/Review/List">Go back to list</a>
+<br />
+<a href="/Review/Edit/@Model.ReviewID">Update</a>
+<br />
+<a href="/Review/DeleteConfirm/@Model.ReviewID">Delete</a>
+<br />
+
+<h2>Rating: @Model.Rating</h2>
+<div>Comment: @Model.Comment</div>
+<div>Rating Date: @Model.ReviewDate</div>
+<div>Anime: @Model.AnimeName</div>
+<div>Member: @Model.FirstName @Model.LastName</div>
+
+

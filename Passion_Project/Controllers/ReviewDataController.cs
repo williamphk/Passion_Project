@@ -42,7 +42,8 @@ namespace Passion_Project.Controllers
                 AnimeID = r.Anime.AnimeID,
                 AnimeName = r.Anime.AnimeName,
                 MemberID = r.Member.MemberID,
-                UserName = r.Member.UserName
+                FirstName = r.Member.FirstName,
+                LastName = r.Member.LastName,
             }));
 
             return ReviewDtos;
@@ -75,7 +76,8 @@ namespace Passion_Project.Controllers
                 AnimeID = Review.Anime.AnimeID,
                 AnimeName = Review.Anime.AnimeName,
                 MemberID = Review.Member.MemberID,
-                UserName = Review.Member.UserName
+                FirstName = Review.Member.FirstName,
+                LastName = Review.Member.LastName,
             };
             if (Review == null)
             {

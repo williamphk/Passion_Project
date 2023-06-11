@@ -29,9 +29,17 @@ namespace Passion_Project.Models
         public int Rating { get; set; }
         public string Comment { get; set; }
         public DateTime ReviewDate { get; set; }
+        public string FormattedDate
+        {
+            get
+            {
+                return ReviewDate.ToString("yyyy-MM-dd");
+            }
+        }
         public int AnimeID { get; set; }
         public string AnimeName { get; set; }
         public int MemberID { get; set; }
-        public string UserName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 }
