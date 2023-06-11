@@ -38,6 +38,8 @@ namespace Passion_Project.Controllers
             Members.ForEach(m => MemberDtos.Add(new MemberDto()
             {
                 MemberID = m.MemberID,
+                FirstName = m.FirstName,
+                LastName = m.LastName,
                 UserName = m.UserName,
                 Password = m.Password,
             }));
@@ -66,6 +68,8 @@ namespace Passion_Project.Controllers
             MemberDto MemberDto = new MemberDto()
             {
                 MemberID = Member.MemberID,
+                FirstName = Member.FirstName,
+                LastName = Member.LastName,
                 UserName = Member.UserName,
                 Password = Member.Password,
             };

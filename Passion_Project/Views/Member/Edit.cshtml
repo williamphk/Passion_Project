@@ -1,0 +1,31 @@
+﻿@model Passion_Project.Models.MemberDto
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Member</h2>
+<form action="/Member/Update/@Model.MemberID" method="POST">
+    <div style="display:none;">
+        <input name="MemberID" type="text" value="@Model.MemberID" />
+    </div>
+    <div>
+        <label>FirstName:</label>
+        <input name="FirstName" type="text" value="@Model.FirstName"/>
+    </div>
+    <div>
+        <label>LastName:</label>
+        <input name="LastName" type="text" value="@Model.LastName"/>
+    </div>
+    <div>
+        <label>UserName:</label>
+        <input name="UserName" type="text" value="@Model.UserName"/>
+    </div>
+    <div>
+        <label>Password:</label>
+        <input name="Password" type="password" value="@Model.Password"/>
+    </div>
+    <div>
+        <input type="submit" value="Update Member" />
+    </div>
+</form>

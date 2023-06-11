@@ -1,0 +1,15 @@
+﻿@model Passion_Project.Models.MemberDto
+@{
+    ViewBag.Title = "View";
+}
+
+<a href="/Member/List">Go back to list</a>
+<br />
+<a href="/Member/Edit/@Model.MemberID">Update</a>
+<br />
+<a href="/Member/DeleteConfirm/@Model.MemberID">Delete</a>
+<br />
+
+<h2>@Model.FirstName @Model.LastName</h2>
+<div>@Model.UserName</div>
+

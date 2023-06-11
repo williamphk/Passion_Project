@@ -10,12 +10,16 @@ namespace Passion_Project.Models
     {
         [Key]
         public int MemberID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
     }
     public class MemberDto
     {
         public int MemberID { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
     }

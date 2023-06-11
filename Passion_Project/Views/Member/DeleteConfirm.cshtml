@@ -1,0 +1,13 @@
+﻿@model Passion_Project.Models.MemberDto
+
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Are you sure you want to delete this Member?</h2>
+<a href="/Member/List">Cancel</a>
+<h2>@Model.FirstName @Model.LastName</h2>
+<form action="/Member/Delete/@Model.MemberID" method="POST">
+    <input type="submit" value="Confirm Delete" />
+
+</form>

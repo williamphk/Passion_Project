@@ -188,6 +188,7 @@
     <Compile Include="Controllers\GenreDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\MemberDataController.cs" />
     <Compile Include="Controllers\ReviewDataController.cs" />
     <Compile Include="Global.asax.cs">
@@ -208,6 +209,10 @@
     <Compile Include="Migrations\202306060134456_animes-genres.cs" />
     <Compile Include="Migrations\202306060134456_animes-genres.designer.cs">
       <DependentUpon>202306060134456_animes-genres.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306111634494_member-name.cs" />
+    <Compile Include="Migrations\202306111634494_member-name.designer.cs">
+      <DependentUpon>202306111634494_member-name.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -305,6 +310,12 @@
     <Content Include="Views\Genre\Edit.cshtml" />
     <Content Include="Views\Genre\Details.cshtml" />
     <Content Include="Views\Genre\DeleteConfirm.cshtml" />
+    <Content Include="Views\Member\DeleteConfirm.cshtml" />
+    <Content Include="Views\Member\Details.cshtml" />
+    <Content Include="Views\Member\Edit.cshtml" />
+    <Content Include="Views\Member\Error.cshtml" />
+    <Content Include="Views\Member\List.cshtml" />
+    <Content Include="Views\Member\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -348,6 +359,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306060134456_animes-genres.resx">
       <DependentUpon>202306060134456_animes-genres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306111634494_member-name.resx">
+      <DependentUpon>202306111634494_member-name.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
