@@ -1,4 +1,5 @@
 ﻿using Passion_Project.Models;
+using Passion_Project.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,65 +7,64 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
-using Passion_Project.Models.ViewModels;
 
 namespace Passion_Project.Controllers
 {
-    public class AnimeController : Controller
+    public class GenreController : Controller
     {
         private static readonly HttpClient Client;
         private JavaScriptSerializer jss = new JavaScriptSerializer();
 
-        static AnimeController()
+        static GenreController()
         {
             Client = new HttpClient();
             Client.BaseAddress = new Uri("https://localhost:44338/api/");
 
         }
-        // GET: Anime/List
+        // GET: Genre/List
         public ActionResult List()
         {
-            //Objective: communicate with anime data api to retrieve a list of animes
-            //curl: https://localhost:44338/api/animedata/listanimes
+            //Objective: communicate with genre data api to retrieve a list of genres
+            //curl: https://localhost:44338/api/genredata/listgenres
 
-            string url = "animedata/listanimes";
+            string url = "genredata/listgenres";
             HttpResponseMessage Response = Client.GetAsync(url).Result;
-            IEnumerable<AnimeDto> Animes = Response.Content.ReadAsAsync<IEnumerable<AnimeDto>>().Result;
+            IEnumerable<GenreDto> Genres = Response.Content.ReadAsAsync<IEnumerable<GenreDto>>().Result;
 
-            return View(Animes);
+            return View(Genres);
         }
 
-        // GET: Anime/Details/5
+        // GET: Genre/Details/5
         public ActionResult Details(int id)
         {
-            DetailsAnime ViewModel = new DetailsAnime();
-            //Objective: communicate with our anime data api to retrieve one anime
-            //curl: https://localhost:44338/api/animedata/findanime/{id}
+            DetailsGenre ViewModel = new DetailsGenre();
+            //Objective: communicate with our genre data api to retrieve one genre
+            //curl: https://localhost:44338/api/genredata/findgenre/{id}
 
-            string url = "animedata/findanime/" + id;
+            string url = "genredata/findgenre/" + id;
             HttpResponseMessage Response = Client.GetAsync(url).Result;
-            AnimeDto SelectedAnime = Response.Content.ReadAsAsync<AnimeDto>().Result;
-            ViewModel.SelectedAnime = SelectedAnime;
+            GenreDto SelectedGenre = Response.Content.ReadAsAsync<GenreDto>().Result;
+            ViewModel.SelectedGenre = SelectedGenre;
 
-            url = "genredata/listgenresforanime/" + id;
+            url = "animedata/listanimesforgenre/" + id;
             Response = Client.GetAsync(url).Result;
-            IEnumerable<GenreDto> AssociatedGenres = Response.Content.ReadAsAsync<IEnumerable<GenreDto>>().Result;
-            ViewModel.AssociatedGenres = AssociatedGenres;
+            IEnumerable<AnimeDto> AssociatedAnimes = Response.Content.ReadAsAsync<IEnumerable<AnimeDto>>().Result;
+            ViewModel.AssociatedAnimes = AssociatedAnimes;
 
-            url = "genredata/listgenresavailableforanime/" + id;
+            url = "animedata/listanimesavailableforgenre/" + id;
             Response = Client.GetAsync(url).Result;
-            IEnumerable<GenreDto> AvailableGenres = Response.Content.ReadAsAsync<IEnumerable<GenreDto>>().Result;
-            ViewModel.AvailableGenres = AvailableGenres;
+            IEnumerable<AnimeDto> AvailableAnimes = Response.Content.ReadAsAsync<IEnumerable<AnimeDto>>().Result;
+            ViewModel.AvailableAnimes = AvailableAnimes;
 
 
             return View(ViewModel);
         }
 
-        //POST: Anime/Associate/{animeid}
+        //POST: Genre/Associate/{genreid}
         [HttpPost]
-        public ActionResult Associate(int id, int GenreID)
+        public ActionResult Associate(int id, int AnimeID)
         {
-            string url = "animedata/associateanimewithgenre/" + id + "/" + GenreID;
+            string url = "genredata/associategenrewithanime/" + id + "/" + AnimeID;
 
             HttpContent content = new StringContent("");
             content.Headers.ContentType.MediaType = "application/json";
@@ -72,11 +72,11 @@ namespace Passion_Project.Controllers
             return RedirectToAction("Details/" + id);
         }
 
-        //GET: Anime/UnAssociate/{animeid}
+        //GET: Genre/UnAssociate/{genreid}
         [HttpGet]
-        public ActionResult UnAssociate(int id, int GenreID)
+        public ActionResult UnAssociate(int id, int AnimeID)
         {
-            string url = "animedata/unassociateanimewithgenre/" + id + "/" + GenreID;
+            string url = "genredata/unassociategenrewithanime/" + id + "/" + AnimeID;
 
             HttpContent content = new StringContent("");
             content.Headers.ContentType.MediaType = "application/json";
@@ -89,21 +89,21 @@ namespace Passion_Project.Controllers
             return View();
         }
 
-        // GET: Anime/New
+        // GET: Genre/New
         public ActionResult New()
         {
             return View();
         }
 
-        // POST: Anime/Create
+        // POST: Genre/Create
         [HttpPost]
-        public ActionResult Create(Anime anime)
+        public ActionResult Create(Genre genre)
         {
-            //Objective: add a new anime into our system using the API
-            //curl -H "Content-Type:application/json" -d @anime.json https://localhost:44338/api/animedata/addanime
-            string url = "animedata/addanime";
+            //Objective: add a new genre into our system using the API
+            //curl -H "Content-Type:application/json" -d @genre.json https://localhost:44338/api/genredata/addgenre
+            string url = "genredata/addgenre";
 
-            string jsonpayload = jss.Serialize(anime);
+            string jsonpayload = jss.Serialize(genre);
 
             HttpContent httpContent = new StringContent(jsonpayload);
             httpContent.Headers.ContentType.MediaType = "application/json";
@@ -119,23 +119,23 @@ namespace Passion_Project.Controllers
 
         }
 
-        // GET: Anime/Edit/5
+        // GET: Genre/Edit/5
         public ActionResult Edit(int id)
         {
-            string url = "animedata/findanime/" + id;
+            string url = "genredata/findgenre/" + id;
             HttpResponseMessage Response = Client.GetAsync(url).Result;
-            AnimeDto SelectedAnime = Response.Content.ReadAsAsync<AnimeDto>().Result;
+            GenreDto SelectedGenre = Response.Content.ReadAsAsync<GenreDto>().Result;
 
-            return View(SelectedAnime);
+            return View(SelectedGenre);
         }
 
-        // POST: Anime/Update/5
+        // POST: Genre/Update/5
         [HttpPost]
-        public ActionResult Update(int id, Anime anime)
+        public ActionResult Update(int id, Genre genre)
         {
-            string url = "animedata/updateanime/" + id;
+            string url = "genredata/updategenre/" + id;
 
-            string jsonpayload = jss.Serialize(anime);
+            string jsonpayload = jss.Serialize(genre);
 
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
@@ -150,22 +150,22 @@ namespace Passion_Project.Controllers
             }
         }
 
-        // GET: Anime/DeleteConfirm/5
+        // GET: Genre/DeleteConfirm/5
         public ActionResult DeleteConfirm(int id)
         {
-            string url = "animedata/findanime/" + id;
+            string url = "genredata/findgenre/" + id;
 
             HttpResponseMessage Response = Client.GetAsync(url).Result;
-            AnimeDto SelectedAnime = Response.Content.ReadAsAsync<AnimeDto>().Result;
+            GenreDto SelectedGenre = Response.Content.ReadAsAsync<GenreDto>().Result;
 
-            return View(SelectedAnime);
+            return View(SelectedGenre);
         }
 
-        // POST: Anime/Delete/5
+        // POST: Genre/Delete/5
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            string url = "animedata/deleteanime/" + id;
+            string url = "genredata/deletegenre/" + id;
 
             HttpContent content = new StringContent("");
             content.Headers.ContentType.MediaType = "application/json";

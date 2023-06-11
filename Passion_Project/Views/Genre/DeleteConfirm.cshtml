@@ -1,0 +1,13 @@
+﻿@model Passion_Project.Models.GenreDto
+
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Are you sure you want to delete this anime?</h2>
+<a href="/Genre/List">Cancel</a>
+<h2>@Model.GenreName</h2>
+<form action="/Genre/Delete/@Model.GenreID" method="POST">
+    <input type="submit" value="Confirm Delete" />
+
+</form>

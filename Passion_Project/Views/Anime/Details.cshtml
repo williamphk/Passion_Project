@@ -25,7 +25,7 @@
 </div>
 
 <div>
-    Add new Genre to take care of @Model.SelectedAnime.AnimeName
+    Add new Genre to assocaite with @Model.SelectedAnime.AnimeName
     <form method="POST" action="/Anime/Associate/@Model.SelectedAnime.AnimeID">
         <select name="GenreID">
             @foreach (var genre in Model.AvailableGenres)
@@ -33,6 +33,6 @@
                 <option value="@genre.GenreID">@genre.GenreName</option>
             }
         </select>
-        <input type="submit" value="Assocaite Genre" />
+        <input type="submit" value="Associate Genre" />
     </form>
 </div>

@@ -9,7 +9,6 @@ namespace Passion_Project.Models.ViewModels
     {
         public AnimeDto SelectedAnime { get; set; }
         public IEnumerable<GenreDto> AssociatedGenres { get; set; }
-
         public IEnumerable<GenreDto> AvailableGenres { get; set; }
     }
 }

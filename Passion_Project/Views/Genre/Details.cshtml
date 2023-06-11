@@ -1,0 +1,36 @@
+﻿@model Passion_Project.Models.ViewModels.DetailsGenre
+@{
+    ViewBag.Title = "View";
+}
+
+<a href="/Genre/List">Go back to list</a>
+<br />
+<a href="/Genre/Edit/@Model.SelectedGenre.GenreID">Update</a>
+<br />
+<a href="/Genre/DeleteConfirm/@Model.SelectedGenre.GenreID">Delete</a>
+<br />
+
+<h2>@Model.SelectedGenre.GenreName</h2>
+
+<div style="margin-top: 100px">
+    <h3>Animes assocaited with: @Model.SelectedGenre.GenreName</h3>
+    @foreach (var anime in Model.AssociatedAnimes)
+    {
+        <a href="/Anime/Details/@anime.AnimeID">@anime.AnimeName</a>
+        <a style="color:red" href="/Genre/Unassociate/@Model.SelectedGenre.GenreID?AnimeID=@anime.AnimeID">[x]</a><br />
+    }
+
+</div>
+
+<div>
+    Add new Anime to assocaite with @Model.SelectedGenre.GenreName
+    <form method="POST" action="/Genre/Associate/@Model.SelectedGenre.GenreID">
+        <select name="AnimeID">
+            @foreach (var anime in Model.AvailableAnimes)
+            {
+                <option value="@anime.AnimeID">@anime.AnimeName</option>
+            }
+        </select>
+        <input type="submit" value="Associate Anime" />
+    </form>
+</div>

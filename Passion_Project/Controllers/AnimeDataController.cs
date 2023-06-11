@@ -45,6 +45,90 @@ namespace Passion_Project.Controllers
         }
 
         /// <summary>
+        /// Returns all Genres in the system associated with a particular anime.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all Genres in the database associated with a particular anime
+        /// </returns>
+        /// <param name="id">Anime Primary Key</param>
+        /// <example>
+        /// GET: api/GenreData/ListGenresForAnime/1
+        /// </example>
+        [HttpGet]
+        public IEnumerable<AnimeDto> ListAnimesForGenre(int id)
+        {
+            List<Anime> Animes = db.Animes.Where(a => a.Genres.Any(g => g.GenreID == id)).ToList();
+            List<AnimeDto> AnimeDtos = new List<AnimeDto>();
+
+            Animes.ForEach(a => AnimeDtos.Add(new AnimeDto()
+            {
+                AnimeID = a.AnimeID,
+                AnimeName = a.AnimeName,
+            }));
+
+            return AnimeDtos;
+        }
+
+        /// <summary>
+        /// Returns all Genres in the system available for a particular anime.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all Genres in the database available for a particular anime
+        /// </returns>
+        /// <param name="id">Anime Primary Key</param>
+        /// <example>
+        /// GET: api/GenreData/ListGenresForAnime/1
+        /// </example>
+        [HttpGet]
+        public IEnumerable<AnimeDto> ListAnimesAvailableForGenre(int id)
+        {
+            List<Anime> Animes = db.Animes.Where(a => !a.Genres.Any(g => g.GenreID == id)).ToList();
+            List<AnimeDto> AnimeDtos = new List<AnimeDto>();
+
+            Animes.ForEach(a => AnimeDtos.Add(new AnimeDto()
+            {
+                AnimeID = a.AnimeID,
+                AnimeName = a.AnimeName,
+            }));
+
+            return AnimeDtos;
+        }
+
+        [HttpPost]
+        [Route("api/AnimeData/AssociateAnimeWithGenre/{animeid}/{genreid}")]
+        public IHttpActionResult AssociateAnimeWithGenre(int animeid, int genreid)
+        {
+            Anime SelectedAnime = db.Animes.Include(a => a.Genres).Where(a => a.AnimeID == animeid).FirstOrDefault();
+            Genre SelectedGenre = db.Genres.Find(genreid);
+
+            if (SelectedAnime == null || SelectedGenre == null)
+            {
+                return NotFound();
+            }
+            SelectedAnime.Genres.Add(SelectedGenre);
+            db.SaveChanges();
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("api/AnimeData/UnAssociateAnimeWithGenre/{animeid}/{genreid}")]
+        public IHttpActionResult UnAssociateAnimeWithGenre(int animeid, int genreid)
+        {
+            Anime SelectedAnime = db.Animes.Include(a => a.Genres).Where(a => a.AnimeID == animeid).FirstOrDefault();
+            Genre SelectedGenre = db.Genres.Find(genreid);
+
+            if (SelectedAnime == null || SelectedGenre == null)
+            {
+                return NotFound();
+            }
+            SelectedAnime.Genres.Remove(SelectedGenre);
+            db.SaveChanges();
+            return Ok();
+        }
+
+        /// <summary>
         /// Returns a particular anime in the system.
         /// </summary>
         /// <returns>

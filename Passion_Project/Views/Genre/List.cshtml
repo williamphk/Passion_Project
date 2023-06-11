@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Passion_Project.Models.GenreDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+<a href="/Genre/New">New Genre</a>
+@foreach (var Genre in Model)
+{
+    <h2><a href="/Genre/Details/@Genre.GenreID">@Genre.GenreName</a></h2>
+}

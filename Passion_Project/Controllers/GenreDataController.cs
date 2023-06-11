@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -101,6 +102,70 @@ namespace Passion_Project.Controllers
             }));
 
             return Ok(GenreDtos);
+        }
+
+        /// <summary>
+        /// Associates a particular anime with a particular genre
+        /// </summary>
+        /// <param name="genreid">The genre ID primary key</param>
+        /// <param name="animeid">The anime ID primary key</param>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// or
+        /// HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <example>
+        /// POST api/GenreData/AssociateGenreWithAnime/9/1
+        /// </example>
+        [HttpPost]
+        [Route("api/GenreData/AssociateGenreWithAnime/{genreid}/{animeid}")]
+        public IHttpActionResult AssociateGenreWithAnime(int genreid, int animeid)
+        {
+
+            Genre SelectedGenre = db.Genres.Include(g => g.Animes).Where(a => a.GenreID == genreid).FirstOrDefault();
+            Anime SelectedAnime = db.Animes.Find(animeid);
+
+            if (SelectedGenre == null || SelectedAnime == null)
+            {
+                return NotFound();
+            }
+
+            SelectedGenre.Animes.Add(SelectedAnime);
+            db.SaveChanges();
+
+            return Ok();
+        }
+
+        /// <summary>
+        /// Removes an association between a particular anime and a particular genre
+        /// </summary>
+        /// <param name="genreid">The genre ID primary key</param>
+        /// <param name="animeid">The anime ID primary key</param>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// or
+        /// HEADER: 404 (NOT FOUND)
+        /// </returns>
+        /// <example>
+        /// POST api/GenreData/AssociateGenreWithAnime/9/1
+        /// </example>
+        [HttpPost]
+        [Route("api/GenreData/UnAssociateGenreWithAnime/{genreid}/{animeid}")]
+        public IHttpActionResult UnAssociateGenreWithAnime(int genreid, int animeid)
+        {
+
+            Genre SelectedGenre = db.Genres.Include(g => g.Animes).Where(a => a.GenreID == genreid).FirstOrDefault();
+            Anime SelectedAnime = db.Animes.Find(animeid);
+
+            if (SelectedGenre == null || SelectedAnime == null)
+            {
+                return NotFound();
+            }
+
+            SelectedGenre.Animes.Remove(SelectedAnime);
+            db.SaveChanges();
+
+            return Ok();
         }
 
         /// <summary>

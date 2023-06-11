@@ -1,0 +1,19 @@
+﻿@model Passion_Project.Models.GenreDto
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Genre</h2>
+<form action="/Genre/Update/@Model.GenreID" method="POST">
+    <div style="display:none;">
+        <input name="GenreID" type="text" value="@Model.GenreID" />
+    </div>
+    <div>
+        <label>Name:</label>
+        <input name="GenreName" type="text" value="@Model.GenreName" />
+    </div>
+    <div>
+        <input type="submit" value="Update Genre" />
+    </div>
+</form>
