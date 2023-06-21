@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<Passion_Project.Models.ReviewDto>
 @{
-    ViewBag.Title = "List";
+    ViewBag.Title = "Review List";
 }
 
-<h2>List</h2>
+<h2>Review List</h2>
 <a href="/Review/New">New Review</a>
 @foreach (var Review in Model)
 {
-    <h2><a href="/Review/Details/@Review.ReviewID">@Review.Rating by @Review. </a></h2>
+    <h2><a href="/Review/Details/@Review.ReviewID">@Review.Rating by @Review.UserName </a></h2>
 }

@@ -97,38 +97,6 @@ namespace Passion_Project.Controllers
             return AnimeDtos;
         }
 
-        [HttpPost]
-        [Route("api/AnimeData/AssociateAnimeWithGenre/{animeid}/{genreid}")]
-        public IHttpActionResult AssociateAnimeWithGenre(int animeid, int genreid)
-        {
-            Anime SelectedAnime = db.Animes.Include(a => a.Genres).Where(a => a.AnimeID == animeid).FirstOrDefault();
-            Genre SelectedGenre = db.Genres.Find(genreid);
-
-            if (SelectedAnime == null || SelectedGenre == null)
-            {
-                return NotFound();
-            }
-            SelectedAnime.Genres.Add(SelectedGenre);
-            db.SaveChanges();
-            return Ok();
-        }
-
-        [HttpPost]
-        [Route("api/AnimeData/UnAssociateAnimeWithGenre/{animeid}/{genreid}")]
-        public IHttpActionResult UnAssociateAnimeWithGenre(int animeid, int genreid)
-        {
-            Anime SelectedAnime = db.Animes.Include(a => a.Genres).Where(a => a.AnimeID == animeid).FirstOrDefault();
-            Genre SelectedGenre = db.Genres.Find(genreid);
-
-            if (SelectedAnime == null || SelectedGenre == null)
-            {
-                return NotFound();
-            }
-            SelectedAnime.Genres.Remove(SelectedGenre);
-            db.SaveChanges();
-            return Ok();
-        }
-
         /// <summary>
         /// Returns a particular anime in the system.
         /// </summary>

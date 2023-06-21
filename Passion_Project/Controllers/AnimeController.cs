@@ -91,7 +91,7 @@ namespace Passion_Project.Controllers
         [HttpPost]
         public ActionResult Associate(int id, int GenreID)
         {
-            string url = "animedata/associateanimewithgenre/" + id + "/" + GenreID;
+            string url = "genredata/associategenrewithanime/" + GenreID + "/" + id;
 
             HttpContent content = new StringContent("");
             content.Headers.ContentType.MediaType = "application/json";
@@ -103,7 +103,7 @@ namespace Passion_Project.Controllers
         [HttpGet]
         public ActionResult UnAssociate(int id, int GenreID)
         {
-            string url = "animedata/unassociateanimewithgenre/" + id + "/" + GenreID;
+            string url = "genredata/unassociategenrewithanime/" + GenreID + "/" + id;
 
             HttpContent content = new StringContent("");
             content.Headers.ContentType.MediaType = "application/json";
