@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -228,6 +229,7 @@ namespace Passion_Project.Controllers
         /// </example>
         [ResponseType(typeof(Anime))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult AddAnime(Anime anime)
         {
             if (!ModelState.IsValid)

@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Microsoft.AspNet.Identity;
 using Passion_Project.Models;
 
 namespace Passion_Project.Controllers
@@ -41,10 +43,9 @@ namespace Passion_Project.Controllers
                 ReviewDate = r.ReviewDate,
                 AnimeID = r.Anime.AnimeID,
                 AnimeName = r.Anime.AnimeName,
-                MemberID = r.Member.MemberID,
-                FirstName = r.Member.FirstName,
-                LastName = r.Member.LastName,
-            }));
+                UserID = r.UserID,
+                UserName = r.ApplicationUser.UserName
+            })) ;
 
             return ReviewDtos;
         }
@@ -75,9 +76,8 @@ namespace Passion_Project.Controllers
                 ReviewDate = Review.ReviewDate,
                 AnimeID = Review.Anime.AnimeID,
                 AnimeName = Review.Anime.AnimeName,
-                MemberID = Review.Member.MemberID,
-                FirstName = Review.Member.FirstName,
-                LastName = Review.Member.LastName,
+                UserID = Review.UserID,
+                UserName = Review.ApplicationUser.UserName
             };
             if (Review == null)
             {
@@ -154,12 +154,16 @@ namespace Passion_Project.Controllers
         /// </example>
         [ResponseType(typeof(Review))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult AddReview(Review review)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+
+            //attach the id
+            review.UserID = User.Identity.GetUserId();
 
             db.Reviews.Add(review);
             db.SaveChanges();

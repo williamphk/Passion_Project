@@ -28,15 +28,6 @@
         </select>
     </div>
     <div>
-        <label>Member:</label>
-        <select name="MemberID">
-            @foreach (var member in Model.MemberOptions)
-            {
-                <option value="@member.MemberID">@member.FirstName @member.LastName</option>
-            }
-        </select>
-    </div>
-    <div>
         <input type="submit" value="Create Review" />
     </div>
 </form>

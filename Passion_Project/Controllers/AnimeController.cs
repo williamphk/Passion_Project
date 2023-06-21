@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using Passion_Project.Models.ViewModels;
+using System.Diagnostics;
 
 namespace Passion_Project.Controllers
 {
@@ -17,9 +18,35 @@ namespace Passion_Project.Controllers
 
         static AnimeController()
         {
-            Client = new HttpClient();
+            HttpClientHandler handler = new HttpClientHandler()
+            {
+                AllowAutoRedirect = false,
+                //cookies are manually set in RequestHeader
+                UseCookies = false
+            };
+
+            Client = new HttpClient(handler);
             Client.BaseAddress = new Uri("https://localhost:44338/api/");
 
+        }
+        private void GetApplicationCookie()
+        {
+            string token = "";
+            //HTTP client is set up to be reused, otherwise it will exhaust server resources.
+            //This is a bit dangerous because a previously authenticated cookie could be cached for
+            //a follow-up request from someone else. Reset cookies in HTTP client before grabbing a new one.
+            Client.DefaultRequestHeaders.Remove("Cookie");
+            if (!User.Identity.IsAuthenticated) return;
+
+            HttpCookie cookie = System.Web.HttpContext.Current.Request.Cookies.Get(".AspNet.ApplicationCookie");
+            if (cookie != null) token = cookie.Value;
+
+            //collect token as it is submitted to the controller
+            //use it to pass along to the WebAPI.
+            Debug.WriteLine("Token Submitted is : " + token);
+            if (token != "") Client.DefaultRequestHeaders.Add("Cookie", ".AspNet.ApplicationCookie=" + token);
+
+            return;
         }
         // GET: Anime/List
         public ActionResult List()
@@ -90,6 +117,7 @@ namespace Passion_Project.Controllers
         }
 
         // GET: Anime/New
+        [Authorize]
         public ActionResult New()
         {
             return View();
@@ -97,8 +125,10 @@ namespace Passion_Project.Controllers
 
         // POST: Anime/Create
         [HttpPost]
+        [Authorize]
         public ActionResult Create(Anime anime)
         {
+            GetApplicationCookie();
             //Objective: add a new anime into our system using the API
             //curl -H "Content-Type:application/json" -d @anime.json https://localhost:44338/api/animedata/addanime
             string url = "animedata/addanime";

@@ -19,9 +19,9 @@ namespace Passion_Project.Models
         public int AnimeID { get; set; }
         public virtual Anime Anime { get; set; }
 
-        [ForeignKey("Member")]
-        public int MemberID { get; set; }
-        public virtual Member Member { get; set; }
+        [ForeignKey("ApplicationUser")]
+        public string UserID { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
     }
     public class ReviewDto
     {
@@ -38,8 +38,8 @@ namespace Passion_Project.Models
         }
         public int AnimeID { get; set; }
         public string AnimeName { get; set; }
-        public int MemberID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        public string UserID { get; set; }
+        public string UserName { get; set; }
+
     }
 }
