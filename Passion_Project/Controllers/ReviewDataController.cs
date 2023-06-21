@@ -105,6 +105,7 @@ namespace Passion_Project.Controllers
         /// </example>
         [ResponseType(typeof(void))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult UpdateReview(int id, Review review)
         {
             if (!ModelState.IsValid)
@@ -117,6 +118,8 @@ namespace Passion_Project.Controllers
                 return BadRequest();
             }
 
+            //attach the id
+            review.UserID = User.Identity.GetUserId();
             db.Entry(review).State = EntityState.Modified;
 
             try
@@ -186,6 +189,7 @@ namespace Passion_Project.Controllers
         /// </example>
         [ResponseType(typeof(Review))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult DeleteReview(int id)
         {
             Review review = db.Reviews.Find(id);

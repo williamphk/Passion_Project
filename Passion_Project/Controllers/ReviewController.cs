@@ -98,11 +98,6 @@ namespace Passion_Project.Controllers
             IEnumerable<AnimeDto> AnimeOptions = Response.Content.ReadAsAsync<IEnumerable<AnimeDto>>().Result;
             ViewModel.AnimeOptions = AnimeOptions;
 
-            url = "memberdata/listmembers";
-            Response = Client.GetAsync(url).Result;
-            IEnumerable<MemberDto> MemberOptions = Response.Content.ReadAsAsync<IEnumerable<MemberDto>>().Result;
-            ViewModel.MemberOptions = MemberOptions;
-
             return View(ViewModel);
         }
 
@@ -133,6 +128,7 @@ namespace Passion_Project.Controllers
         }
 
         // GET: Review/Edit/5
+        [Authorize]
         public ActionResult Edit(int id)
         {
             UpdateReview ViewModel = new UpdateReview();
@@ -146,18 +142,15 @@ namespace Passion_Project.Controllers
             IEnumerable<AnimeDto> AnimeOptions = Response.Content.ReadAsAsync<IEnumerable<AnimeDto>>().Result;
             ViewModel.AnimeOptions = AnimeOptions;
 
-            url = "memberdata/listmembers";
-            Response = Client.GetAsync(url).Result;
-            IEnumerable<MemberDto> MemberOptions = Response.Content.ReadAsAsync<IEnumerable<MemberDto>>().Result;
-            ViewModel.MemberOptions = MemberOptions;
-
             return View(ViewModel);
         }
 
         // POST: Review/Update/5
         [HttpPost]
+        [Authorize]
         public ActionResult Update(int id, Review review)
         {
+            GetApplicationCookie();
             string url = "reviewdata/updatereview/" + id;
 
             string jsonpayload = jss.Serialize(review);
@@ -176,6 +169,7 @@ namespace Passion_Project.Controllers
         }
 
         // GET: Review/DeleteConfirm/5
+        [Authorize]
         public ActionResult DeleteConfirm(int id)
         {
             string url = "reviewdata/findreview/" + id;
@@ -188,6 +182,7 @@ namespace Passion_Project.Controllers
 
         // POST: Review/Delete/5
         [HttpPost]
+        [Authorize]
         public ActionResult Delete(int id)
         {
             string url = "reviewdata/deletereview/" + id;

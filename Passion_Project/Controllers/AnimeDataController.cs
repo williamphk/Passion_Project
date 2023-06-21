@@ -148,6 +148,7 @@ namespace Passion_Project.Controllers
         /// </example>
         [ResponseType(typeof(void))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult UpdateAnime(int id, Anime anime)
         {
             if (!ModelState.IsValid)
@@ -226,6 +227,7 @@ namespace Passion_Project.Controllers
         /// </example>
         [ResponseType(typeof(Anime))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult DeleteAnime(int id)
         {
             Anime anime = db.Animes.Find(id);

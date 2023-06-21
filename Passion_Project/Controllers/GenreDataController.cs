@@ -119,6 +119,7 @@ namespace Passion_Project.Controllers
         /// </example>
         [HttpPost]
         [Route("api/GenreData/AssociateGenreWithAnime/{genreid}/{animeid}")]
+        [Authorize]
         public IHttpActionResult AssociateGenreWithAnime(int genreid, int animeid)
         {
 
@@ -151,6 +152,7 @@ namespace Passion_Project.Controllers
         /// </example>
         [HttpPost]
         [Route("api/GenreData/UnAssociateGenreWithAnime/{genreid}/{animeid}")]
+        [Authorize]
         public IHttpActionResult UnAssociateGenreWithAnime(int genreid, int animeid)
         {
 
@@ -217,6 +219,7 @@ namespace Passion_Project.Controllers
         /// </example>
         [ResponseType(typeof(void))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult UpdateGenre(int id, Genre genre)
         {
             if (!ModelState.IsValid)
@@ -266,6 +269,7 @@ namespace Passion_Project.Controllers
         /// </example>
         [ResponseType(typeof(Genre))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult AddGenre(Genre genre)
         {
             if (!ModelState.IsValid)
@@ -294,6 +298,7 @@ namespace Passion_Project.Controllers
         /// </example>
         [ResponseType(typeof(Genre))]
         [HttpPost]
+        [Authorize]
         public IHttpActionResult DeleteGenre(int id)
         {
             Genre genre = db.Genres.Find(id);

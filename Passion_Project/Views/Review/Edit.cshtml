@@ -15,7 +15,7 @@
     </div>
     <div>
         <label>Comment:</label>
-        <input name="Coment" type="text" value="@Model.SelectedReview.Comment" />
+        <input name="Comment" type="text" value="@Model.SelectedReview.Comment" />
     </div>
     <div>
         <label>Review Date:</label>
@@ -27,15 +27,6 @@
             @foreach (var anime in Model.AnimeOptions)
             {
                 <option value="@anime.AnimeID">@anime.AnimeName</option>
-            }
-        </select>
-    </div>
-    <div>
-        <label>Member:</label>
-        <select name="MemberID">
-            @foreach (var member in Model.MemberOptions)
-            {
-                <option value="@member.MemberID">@member.FirstName @member.LastName</option>
             }
         </select>
     </div>

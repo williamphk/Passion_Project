@@ -90,8 +90,10 @@ namespace Passion_Project.Controllers
 
         //POST: Genre/Associate/{genreid}
         [HttpPost]
+        [Authorize]
         public ActionResult Associate(int id, int AnimeID)
         {
+            GetApplicationCookie();
             string url = "genredata/associategenrewithanime/" + id + "/" + AnimeID;
 
             HttpContent content = new StringContent("");
@@ -105,6 +107,7 @@ namespace Passion_Project.Controllers
         [Authorize]
         public ActionResult UnAssociate(int id, int AnimeID)
         {
+            GetApplicationCookie();
             string url = "genredata/unassociategenrewithanime/" + id + "/" + AnimeID;
 
             HttpContent content = new StringContent("");

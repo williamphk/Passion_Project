@@ -89,8 +89,10 @@ namespace Passion_Project.Controllers
 
         //POST: Anime/Associate/{animeid}
         [HttpPost]
+        [Authorize]
         public ActionResult Associate(int id, int GenreID)
         {
+            GetApplicationCookie();
             string url = "genredata/associategenrewithanime/" + GenreID + "/" + id;
 
             HttpContent content = new StringContent("");
@@ -99,10 +101,12 @@ namespace Passion_Project.Controllers
             return RedirectToAction("Details/" + id);
         }
 
+        [Authorize]
         //GET: Anime/UnAssociate/{animeid}
         [HttpGet]
         public ActionResult UnAssociate(int id, int GenreID)
         {
+            GetApplicationCookie();
             string url = "genredata/unassociategenrewithanime/" + GenreID + "/" + id;
 
             HttpContent content = new StringContent("");
@@ -150,6 +154,7 @@ namespace Passion_Project.Controllers
         }
 
         // GET: Anime/Edit/5
+        [Authorize]
         public ActionResult Edit(int id)
         {
             string url = "animedata/findanime/" + id;
@@ -161,8 +166,10 @@ namespace Passion_Project.Controllers
 
         // POST: Anime/Update/5
         [HttpPost]
+        [Authorize]
         public ActionResult Update(int id, Anime anime)
         {
+            GetApplicationCookie();
             string url = "animedata/updateanime/" + id;
 
             string jsonpayload = jss.Serialize(anime);
@@ -181,6 +188,7 @@ namespace Passion_Project.Controllers
         }
 
         // GET: Anime/DeleteConfirm/5
+        [Authorize]
         public ActionResult DeleteConfirm(int id)
         {
             string url = "animedata/findanime/" + id;
@@ -193,8 +201,10 @@ namespace Passion_Project.Controllers
 
         // POST: Anime/Delete/5
         [HttpPost]
+        [Authorize]
         public ActionResult Delete(int id)
         {
+            GetApplicationCookie();
             string url = "animedata/deleteanime/" + id;
 
             HttpContent content = new StringContent("");
