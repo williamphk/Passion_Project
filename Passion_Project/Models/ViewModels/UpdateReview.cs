@@ -9,11 +9,11 @@ namespace Passion_Project.Models.ViewModels
     {
         //This viewmodel is a class which stores information that we need to present to /Review/Update/{}
 
-        //the existing animal information
+        //the existing anime information
 
         public ReviewDto SelectedReview { get; set; }
 
-        // all species to choose from when updating this animal
+        // all species to choose from when updating this anime
 
         public IEnumerable<AnimeDto> AnimeOptions { get; set; }
 

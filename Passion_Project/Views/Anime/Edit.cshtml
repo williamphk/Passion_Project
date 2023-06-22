@@ -5,7 +5,7 @@
 }
 
 <h2>Edit Anime</h2>
-<form action="/Anime/Update/@Model.AnimeID" method="POST">
+<form action="/Anime/Update/@Model.AnimeID" method="POST" enctype="multipart/form-data">
     <div style="display:none;">
         <input name="AnimeID" type="text" value="@Model.AnimeID" />
     </div>
@@ -20,6 +20,9 @@
     <div>
         <label>Description:</label>
         <input name="Description" type="text" value="@Model.Description" />
+    </div>
+    <div class="col-md-6 col-sm-12">
+        <input type="file" name="AnimePic" />
     </div>
     <div>
         <input type="submit" value="Update Anime" />

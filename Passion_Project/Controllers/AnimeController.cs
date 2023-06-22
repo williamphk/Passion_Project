@@ -167,7 +167,7 @@ namespace Passion_Project.Controllers
         // POST: Anime/Update/5
         [HttpPost]
         [Authorize]
-        public ActionResult Update(int id, Anime anime)
+        public ActionResult Update(int id, Anime anime, HttpPostedFileBase AnimePic)
         {
             GetApplicationCookie();
             string url = "animedata/updateanime/" + id;
@@ -177,6 +177,24 @@ namespace Passion_Project.Controllers
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
             HttpResponseMessage Response = Client.PostAsync(url, content).Result;
+
+            //update request is successful, and we have image data
+            if (Response.IsSuccessStatusCode && AnimePic != null)
+            {
+                //Updating the anime picture as a separate request
+                Debug.WriteLine("Calling Update Image method.");
+                //Send over image data for player
+                url = "AnimeData/UploadAnimePic/" + id;
+                //Debug.WriteLine("Received Anime Picture "+AnimePic.FileName);
+
+                MultipartFormDataContent requestcontent = new MultipartFormDataContent();
+                HttpContent imagecontent = new StreamContent(AnimePic.InputStream);
+                requestcontent.Add(imagecontent, "AnimePic", AnimePic.FileName);
+                Response = Client.PostAsync(url, requestcontent).Result;
+
+                return RedirectToAction("List");
+            }
+
             if (Response.IsSuccessStatusCode)
             {
                 return RedirectToAction("List");

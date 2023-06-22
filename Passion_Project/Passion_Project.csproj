@@ -221,6 +221,10 @@
     <Compile Include="Migrations\202306220134595_remove-member.designer.cs">
       <DependentUpon>202306220134595_remove-member.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202306220207542_add-picture-anime.cs" />
+    <Compile Include="Migrations\202306220207542_add-picture-anime.designer.cs">
+      <DependentUpon>202306220207542_add-picture-anime.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Anime.cs" />
@@ -327,6 +331,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\Animes\" />
     <Folder Include="Views\ReviewDefault\" />
   </ItemGroup>
   <ItemGroup>
@@ -377,6 +382,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306220134595_remove-member.resx">
       <DependentUpon>202306220134595_remove-member.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306220207542_add-picture-anime.resx">
+      <DependentUpon>202306220207542_add-picture-anime.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

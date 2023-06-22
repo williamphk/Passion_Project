@@ -14,6 +14,8 @@ namespace Passion_Project.Models
         public DateTime ReleaseDate { get; set; }
         public string Description { get; set; }
         public ICollection<Genre> Genres { get; set; }
+        public bool AnimeHasPic { get; set; }
+        public string PicExtension { get; set; }
     }
     public class AnimeDto
     {
@@ -28,5 +30,7 @@ namespace Passion_Project.Models
             }
         }
         public string Description { get; set; }
+        public bool AnimeHasPic { get; set; }
+        public string PicExtension { get; set; }
     }
 }

@@ -11,6 +11,14 @@
 <br />
 
 <h2>@Model.SelectedAnime.AnimeName</h2>
+@{
+    string imageurl = "/Content/Images/Animes/default.jpg";
+    if (Model.SelectedAnime.AnimeHasPic)
+    {
+        imageurl = "/Content/Images/Animes/" + Model.SelectedAnime.AnimeID + "." + Model.SelectedAnime.PicExtension;
+    }
+}
+<div><img src="@imageurl" /></div>
 <div>Release Date: @Model.SelectedAnime.ReleaseDate</div>
 <div>Description: @Model.SelectedAnime.Description</div>
 
