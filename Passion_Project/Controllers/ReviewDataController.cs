@@ -108,19 +108,38 @@ namespace Passion_Project.Controllers
         [Authorize]
         public IHttpActionResult UpdateReview(int id, Review review)
         {
+            // Check model state
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            // Check if ID matches
             if (id != review.ReviewID)
             {
                 return BadRequest();
             }
 
-            //attach the id
-            review.UserID = User.Identity.GetUserId();
-            db.Entry(review).State = EntityState.Modified;
+            //get the review from the database because it contains the userID of the owner
+            var reviewInDb = db.Reviews.Find(id);
+
+            //check if the review in db exists
+            if (reviewInDb == null)
+            {
+                return NotFound();
+            }
+
+            //check if the current user is the owner of the review
+            var currentUserId = User.Identity.GetUserId();
+            if (reviewInDb.UserID != currentUserId)
+            {
+                return Unauthorized();
+            }
+
+            reviewInDb.Rating = review.Rating;
+            reviewInDb.Comment = review.Comment;
+            reviewInDb.ReviewDate = review.ReviewDate;
+            reviewInDb.AnimeID = review.AnimeID;
 
             try
             {
@@ -140,6 +159,7 @@ namespace Passion_Project.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
+
 
         /// <summary>
         /// Adds an review to the system
@@ -196,6 +216,14 @@ namespace Passion_Project.Controllers
             if (review == null)
             {
                 return NotFound();
+            }
+
+            //check if the current user is the owner of the review
+            var currentUserId = User.Identity.GetUserId();
+
+            if (review.UserID != currentUserId)
+            {
+                return Unauthorized();
             }
 
             db.Reviews.Remove(review);

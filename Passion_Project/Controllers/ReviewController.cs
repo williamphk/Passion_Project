@@ -158,6 +158,9 @@ namespace Passion_Project.Controllers
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
             HttpResponseMessage Response = Client.PostAsync(url, content).Result;
+            Debug.WriteLine(Response.StatusCode);
+            Debug.WriteLine(Response.Content.ReadAsStringAsync().Result);
+
             if (Response.IsSuccessStatusCode)
             {
                 return RedirectToAction("List");
@@ -185,6 +188,7 @@ namespace Passion_Project.Controllers
         [Authorize]
         public ActionResult Delete(int id)
         {
+            GetApplicationCookie();
             string url = "reviewdata/deletereview/" + id;
 
             HttpContent content = new StringContent("");
