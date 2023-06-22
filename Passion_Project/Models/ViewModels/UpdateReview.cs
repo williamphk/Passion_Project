@@ -16,7 +16,6 @@ namespace Passion_Project.Models.ViewModels
         // all species to choose from when updating this animal
 
         public IEnumerable<AnimeDto> AnimeOptions { get; set; }
-        public IEnumerable<MemberDto> MemberOptions { get; set; }
 
     }
 }
