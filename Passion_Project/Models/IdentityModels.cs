@@ -27,7 +27,6 @@ namespace Passion_Project.Models
 
         public DbSet<Anime> Animes { get; set; }
         public DbSet<Genre> Genres { get; set; }
-        public DbSet<Member> Members { get; set; }
         public DbSet<Review> Reviews { get; set; }
 
         public static ApplicationDbContext Create()

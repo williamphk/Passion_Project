@@ -188,8 +188,6 @@
     <Compile Include="Controllers\GenreDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\MemberController.cs" />
-    <Compile Include="Controllers\MemberDataController.cs" />
     <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Controllers\ReviewDataController.cs" />
     <Compile Include="Global.asax.cs">
@@ -218,6 +216,10 @@
     <Compile Include="Migrations\202306210132469_ApplicationUser.cs" />
     <Compile Include="Migrations\202306210132469_ApplicationUser.designer.cs">
       <DependentUpon>202306210132469_ApplicationUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306220134595_remove-member.cs" />
+    <Compile Include="Migrations\202306220134595_remove-member.designer.cs">
+      <DependentUpon>202306220134595_remove-member.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -317,12 +319,6 @@
     <Content Include="Views\Genre\Edit.cshtml" />
     <Content Include="Views\Genre\Details.cshtml" />
     <Content Include="Views\Genre\DeleteConfirm.cshtml" />
-    <Content Include="Views\Member\DeleteConfirm.cshtml" />
-    <Content Include="Views\Member\Details.cshtml" />
-    <Content Include="Views\Member\Edit.cshtml" />
-    <Content Include="Views\Member\Error.cshtml" />
-    <Content Include="Views\Member\List.cshtml" />
-    <Content Include="Views\Member\New.cshtml" />
     <Content Include="Views\Review\DeleteConfirm.cshtml" />
     <Content Include="Views\Review\Details.cshtml" />
     <Content Include="Views\Review\Edit.cshtml" />
@@ -379,6 +375,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202306210132469_ApplicationUser.resx">
       <DependentUpon>202306210132469_ApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306220134595_remove-member.resx">
+      <DependentUpon>202306220134595_remove-member.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
