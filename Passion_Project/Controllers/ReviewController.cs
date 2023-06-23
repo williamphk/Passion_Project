@@ -196,7 +196,7 @@ namespace Passion_Project.Controllers
             HttpResponseMessage Response = Client.PostAsync(url, content).Result;
             if (Response.IsSuccessStatusCode)
             {
-                return RedirectToAction("List");
+                return RedirectToAction("List", "Anime"); // Redirect to Anime Details view
             }
             else
             {

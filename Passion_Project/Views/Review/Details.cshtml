@@ -1,4 +1,6 @@
-﻿@model Passion_Project.Models.ReviewDto
+﻿@using System.Globalization
+
+@model Passion_Project.Models.ReviewDto
 @{
     ViewBag.Title = "View";
 }
@@ -12,7 +14,7 @@
 
 <h2>Rating: @Model.Rating</h2>
 <div>Comment: @Model.Comment</div>
-<div>Rating Date: @Model.ReviewDate</div>
+<div>Rating Date: @Model.ReviewDate.ToString("MMM dd, yyyy", new CultureInfo("en-US"))</div>
 <div>Anime: @Model.AnimeName</div>
 <div>Member: @Model.UserName </div>
 
