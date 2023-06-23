@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Passion_Project.Models.AnimeDto>
 @{
-    ViewBag.Title = "MyAnime";
+    ViewBag.Title = "Hikouki Anime";
 }
 
 <h2>Anime List</h2>
@@ -12,7 +12,8 @@
         {
             imageurl = "/Content/Images/Animes/" + Anime.AnimeID + "." + Anime.PicExtension;
         }
-    
-        <a href="/Anime/Details/@Anime.AnimeID"><img src="@imageurl" width="250"/></a>
+
+        <a href="/Anime/Details/@Anime.AnimeID" style="width:250px; height:500px; background-image:url('@imageurl'); background-size:cover;"></a>
     }
+    <a href="/Anime/New" style="width:250px; height:500px;font-size:100px; display: flex; justify-content:center; align-items: center; background-color:gray;">+</a>
 </div>

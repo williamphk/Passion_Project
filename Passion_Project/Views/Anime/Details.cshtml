@@ -5,10 +5,13 @@
 
 <a href="/Anime/List">Go back to list</a>
 <br />
-<a href="/Anime/Edit/@Model.SelectedAnime.AnimeID">Update</a>
-<br />
-<a href="/Anime/DeleteConfirm/@Model.SelectedAnime.AnimeID">Delete</a>
-<br />
+@if (User.Identity.IsAuthenticated)
+{
+    <a href="/Anime/Edit/@Model.SelectedAnime.AnimeID">Update</a>
+    <br />
+    <a href="/Anime/DeleteConfirm/@Model.SelectedAnime.AnimeID">Delete</a>
+    <br />
+}
 
 <h2>@Model.SelectedAnime.AnimeName</h2>
 @{
@@ -22,25 +25,41 @@
 <div>Release Date: @Model.SelectedAnime.ReleaseDate</div>
 <div>Description: @Model.SelectedAnime.Description</div>
 
-<div style="margin-top: 100px">
+<div style="margin-top: 20px">
     <h3>Genre Associated with: @Model.SelectedAnime.AnimeName</h3>
     @foreach (var genre in Model.AssociatedGenres)
     {
         <a href="/Genre/Details/@genre.GenreID">@genre.GenreName</a>
-        <a style="color:red" href="/Anime/Unassociate/@Model.SelectedAnime.AnimeID?GenreID=@genre.GenreID">[x]</a><br />
+        if (User.Identity.IsAuthenticated)
+        {
+            <a style="color:red" href="/Anime/Unassociate/@Model.SelectedAnime.AnimeID?GenreID=@genre.GenreID">[x]</a><br />
+        }
     }
 
 </div>
 
-<div>
-    Add new Genre to assocaite with @Model.SelectedAnime.AnimeName
-    <form method="POST" action="/Anime/Associate/@Model.SelectedAnime.AnimeID">
-        <select name="GenreID">
-            @foreach (var genre in Model.AvailableGenres)
-            {
-                <option value="@genre.GenreID">@genre.GenreName</option>
-            }
-        </select>
-        <input type="submit" value="Associate Genre" />
-    </form>
-</div>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <p>The user is logged in. Show some content here.</p>
+    <div>
+        Add new Genre to assocaite with @Model.SelectedAnime.AnimeName
+        <form method="POST" action="/Anime/Associate/@Model.SelectedAnime.AnimeID">
+            <select name="GenreID">
+                @foreach (var genre in Model.AvailableGenres)
+                {
+                    <option value="@genre.GenreID">@genre.GenreName</option>
+                }
+            </select>
+            <input type="submit" value="Associate Genre" />
+        </form>
+    </div>
+}
+
+@foreach (var review in Model.RelatedReviews)
+{
+    <p>@review.UserName</p>
+    <p>@review.Rating</p>
+    <p>@review.Comment</p>
+    <p>@review.ReviewDate</p>
+}

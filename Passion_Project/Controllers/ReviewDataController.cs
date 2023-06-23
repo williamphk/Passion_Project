@@ -51,6 +51,35 @@ namespace Passion_Project.Controllers
         }
 
         /// <summary>
+        /// Returns all Reviews in the system associated with a particular anime.
+        /// </summary>
+        /// <returns>
+        /// HEADER: 200 (OK)
+        /// CONTENT: all Reviews in the database associated with a particular anime
+        /// </returns>
+        /// <param name="id">Anime Primary Key</param>
+        /// <example>
+        /// GET: api/ReviewData/ListReviewsForAnime/1
+        /// </example>
+        [HttpGet]
+        public IEnumerable<ReviewDto> ListReviewsForAnime(int id)
+        {
+            List<Review> Reviews = db.Reviews.Where(r => r.AnimeID == id).ToList();
+            List<ReviewDto> ReviewDtos = new List<ReviewDto>();
+
+            Reviews.ForEach(r => ReviewDtos.Add(new ReviewDto()
+            {
+                AnimeID = r.AnimeID,
+                UserName= r.ApplicationUser.UserName,
+                Rating = r.Rating,
+                Comment = r.Comment,
+                ReviewDate = r.ReviewDate,
+            }));
+
+            return ReviewDtos;
+        }
+
+        /// <summary>
         /// Returns a particular review in the system.
         /// </summary>
         /// <returns>

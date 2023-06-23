@@ -83,6 +83,10 @@ namespace Passion_Project.Controllers
             IEnumerable<GenreDto> AvailableGenres = Response.Content.ReadAsAsync<IEnumerable<GenreDto>>().Result;
             ViewModel.AvailableGenres = AvailableGenres;
 
+            url = "reviewdata/ListReviewsForAnime/" + id;
+            Response = Client.GetAsync(url).Result;
+            IEnumerable<ReviewDto> RelatedReviews = Response.Content.ReadAsAsync<IEnumerable<ReviewDto>>().Result;
+            ViewModel.RelatedReviews = RelatedReviews;
 
             return View(ViewModel);
         }
