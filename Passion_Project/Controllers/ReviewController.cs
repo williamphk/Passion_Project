@@ -118,7 +118,7 @@ namespace Passion_Project.Controllers
             HttpResponseMessage Response = Client.PostAsync(url, httpContent).Result;
             if (Response.IsSuccessStatusCode)
             {
-                return RedirectToAction("List");
+                return RedirectToAction("Details", "Anime", new { id = review.AnimeID }); // Redirect to Anime Details view
             }
             else
             {
@@ -163,7 +163,7 @@ namespace Passion_Project.Controllers
 
             if (Response.IsSuccessStatusCode)
             {
-                return RedirectToAction("List");
+                return RedirectToAction("Details", "Anime", new { id = review.AnimeID }); // Redirect to Anime Details view
             }
             else
             {

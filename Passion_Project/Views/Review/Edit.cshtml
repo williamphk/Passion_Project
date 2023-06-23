@@ -10,19 +10,19 @@
         <input name="ReviewID" type="text" value="@Model.SelectedReview.ReviewID" />
     </div>
     <div>
-        <label>Rating:</label>
+        <label>Rating:</label> <br />
         <input name="Rating" type="text" value="@Model.SelectedReview.Rating" />
     </div>
     <div>
-        <label>Comment:</label>
+        <label>Comment:</label> <br />
         <input name="Comment" type="text" value="@Model.SelectedReview.Comment" />
     </div>
     <div>
-        <label>Review Date:</label>
-        <input name="ReviewDate" type="date" value="@Model.SelectedReview.FormattedDate"/>
+        <label>Review Date:</label> <br />
+        <input name="ReviewDate" type="date" value="@Model.SelectedReview.FormattedDate" />
     </div>
     <div>
-        <label>Anime:</label>
+        <label>Anime:</label> <br />
         <select name="AnimeID">
             @foreach (var anime in Model.AnimeOptions)
             {
@@ -30,6 +30,7 @@
             }
         </select>
     </div>
+    <br />
     <div>
         <input type="submit" value="Update Review" />
     </div>

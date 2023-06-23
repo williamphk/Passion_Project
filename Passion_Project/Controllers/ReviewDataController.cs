@@ -69,6 +69,7 @@ namespace Passion_Project.Controllers
 
             Reviews.ForEach(r => ReviewDtos.Add(new ReviewDto()
             {
+                ReviewID = r.ReviewID,
                 AnimeID = r.AnimeID,
                 UserName= r.ApplicationUser.UserName,
                 Rating = r.Rating,

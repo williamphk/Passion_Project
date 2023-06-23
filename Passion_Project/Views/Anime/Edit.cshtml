@@ -10,20 +10,22 @@
         <input name="AnimeID" type="text" value="@Model.AnimeID" />
     </div>
     <div>
-        <label>Name:</label>
+        <label>Name:</label> <br />
         <input name="AnimeName" type="text" value="@Model.AnimeName" />
     </div>
     <div>
-        <label>Release Date:</label>
+        <label>Release Date:</label> <br />
         <input name="ReleaseDate" type="date" value="@Model.FormattedDate" />
     </div>
     <div>
-        <label>Description:</label>
+        <label>Description:</label> <br />
         <input name="Description" type="text" value="@Model.Description" />
     </div>
+    <br />
     <div class="col-md-6 col-sm-12">
         <input type="file" name="AnimePic" />
     </div>
+    <br />
     <div>
         <input type="submit" value="Update Anime" />
     </div>

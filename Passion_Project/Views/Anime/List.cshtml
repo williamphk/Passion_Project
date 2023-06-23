@@ -1,12 +1,19 @@
 ﻿@model IEnumerable<Passion_Project.Models.AnimeDto>
 @{
-    ViewBag.Title = "Anime List";
+    ViewBag.Title = "Hikouki Anime";
 }
 
 <h2>Anime List</h2>
-<a href="/Anime/New">New Anime</a>
-@foreach (var Anime in Model)
-{
-    <h2><a href="/Anime/Details/@Anime.AnimeID">@Anime.AnimeName</a></h2>
-    <div>Release Date: @Anime.ReleaseDate</div>
-}
+<div style="display:flex; flex-wrap: wrap;">
+    @foreach (var Anime in Model)
+    {
+        string imageurl = "/Content/Images/Animes/default.jpg";
+        if (Anime.AnimeHasPic)
+        {
+            imageurl = "/Content/Images/Animes/" + Anime.AnimeID + "." + Anime.PicExtension;
+        }
+
+        <a href="/Anime/Details/@Anime.AnimeID" style="width:250px; height:500px; background-image:url('@imageurl'); background-size:cover;"></a>
+    }
+    <a href="/Anime/New" style="width:250px; height:500px;font-size:100px; display: flex; justify-content:center; align-items: center; background-color:gray;">+</a>
+</div>

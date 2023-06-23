@@ -41,9 +41,8 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    <p>The user is logged in. Show some content here.</p>
     <div>
-        Add new Genre to assocaite with @Model.SelectedAnime.AnimeName
+        <h3>Add new Genre to assocaite with @Model.SelectedAnime.AnimeName</h3>
         <form method="POST" action="/Anime/Associate/@Model.SelectedAnime.AnimeID">
             <select name="GenreID">
                 @foreach (var genre in Model.AvailableGenres)
@@ -56,10 +55,26 @@
     </div>
 }
 
-@foreach (var review in Model.RelatedReviews)
-{
-    <p>@review.UserName</p>
-    <p>@review.Rating</p>
-    <p>@review.Comment</p>
-    <p>@review.ReviewDate</p>
-}
+<div class="container bg-dark text-white" style="margin-top: 20px">
+    <h3>Reviews:</h3>
+    @foreach (var review in Model.RelatedReviews)
+    {
+        <div class="card mt-3 bg-secondary text-white">
+            <div class="card-header bg-dark d-flex justify-content-between">
+                <div>Username: @review.UserName</div>
+                <div>
+                    <a href="/Review/Edit/@review.ReviewID">Update</a>
+                    <a href="/Review/DeleteConfirm/@review.ReviewID">Delete</a>
+                </div>
+            </div>
+            <div class="card-body bg-dark">
+                <div>Rating: @review.Rating / 5</div>
+                <div>Comment: @review.Comment</div>
+            </div>
+            <div class="card-footer bg-dark">
+                Reviewed on @review.ReviewDate.ToString("MMMM dd, yyyy")
+            </div>
+        </div>
+    }
+    <a href="/Review/New" style=" display: block; margin-top: 10px;">Add A Review</a>
+</div>
