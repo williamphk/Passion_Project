@@ -71,7 +71,8 @@ namespace Passion_Project.Controllers
             {
                 ReviewID = r.ReviewID,
                 AnimeID = r.AnimeID,
-                UserName= r.ApplicationUser.UserName,
+                UserID = r.UserID,
+                UserName = r.ApplicationUser.UserName,
                 Rating = r.Rating,
                 Comment = r.Comment,
                 ReviewDate = r.ReviewDate,

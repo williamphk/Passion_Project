@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using Passion_Project.Models.ViewModels;
 using System.Diagnostics;
+using Microsoft.AspNet.Identity;
 
 namespace Passion_Project.Controllers
 {
@@ -87,6 +88,8 @@ namespace Passion_Project.Controllers
             Response = Client.GetAsync(url).Result;
             IEnumerable<ReviewDto> RelatedReviews = Response.Content.ReadAsAsync<IEnumerable<ReviewDto>>().Result;
             ViewModel.RelatedReviews = RelatedReviews;
+
+            ViewModel.CurrentUserID = User.Identity.GetUserId();
 
             return View(ViewModel);
         }

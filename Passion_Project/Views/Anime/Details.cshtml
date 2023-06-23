@@ -62,10 +62,13 @@
         <div class="card mt-3 bg-secondary text-white">
             <div class="card-header bg-dark d-flex justify-content-between">
                 <div>Username: @review.UserName</div>
-                <div>
-                    <a href="/Review/Edit/@review.ReviewID">Update</a>
-                    <a href="/Review/DeleteConfirm/@review.ReviewID">Delete</a>
-                </div>
+                @if (@Model.CurrentUserID == @review.UserID)
+                {
+                    <div>
+                        <a href="/Review/Edit/@review.ReviewID">Update</a>
+                        <a href="/Review/DeleteConfirm/@review.ReviewID">Delete</a>
+                    </div>
+                }
             </div>
             <div class="card-body bg-dark">
                 <div>Rating: @review.Rating / 5</div>
