@@ -89,6 +89,11 @@ namespace Passion_Project.Controllers
             IEnumerable<ReviewDto> RelatedReviews = Response.Content.ReadAsAsync<IEnumerable<ReviewDto>>().Result;
             ViewModel.RelatedReviews = RelatedReviews;
 
+            url = "reviewdata/GetAverageRating/" + id;
+            Response = Client.GetAsync(url).Result;
+            double AverageRating = Response.Content.ReadAsAsync<double>().Result;
+            ViewModel.AverageRating = AverageRating;
+
             ViewModel.CurrentUserID = User.Identity.GetUserId();
 
             return View(ViewModel);

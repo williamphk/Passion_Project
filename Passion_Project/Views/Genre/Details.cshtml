@@ -13,7 +13,7 @@
 <h2>@Model.SelectedGenre.GenreName</h2>
 
 <div style="margin-top: 100px">
-    <h3>Animes assocaited with: @Model.SelectedGenre.GenreName</h3>
+    <h3>Animes associated with: @Model.SelectedGenre.GenreName</h3>
     @foreach (var anime in Model.AssociatedAnimes)
     {
         <a href="/Anime/Details/@anime.AnimeID">@anime.AnimeName</a>
@@ -23,7 +23,7 @@
 </div>
 
 <div>
-    Add new Anime to assocaite with @Model.SelectedGenre.GenreName
+    Add new Anime to associate with @Model.SelectedGenre.GenreName
     <form method="POST" action="/Genre/Associate/@Model.SelectedGenre.GenreID">
         <select name="AnimeID">
             @foreach (var anime in Model.AvailableAnimes)

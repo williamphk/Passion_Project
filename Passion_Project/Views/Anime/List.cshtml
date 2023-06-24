@@ -13,7 +13,7 @@
             imageurl = "/Content/Images/Animes/" + Anime.AnimeID + "." + Anime.PicExtension;
         }
 
-        <a href="/Anime/Details/@Anime.AnimeID" style="width:250px; height:500px; background-image:url('@imageurl'); background-size:cover;"></a>
+        <a href="/Anime/Details/@Anime.AnimeID" style="width:250px; height:500px; background-image:url('@imageurl'); background-size:cover; font-size:40px; text-shadow: 3px 3px 4px #000000;">@Anime.AnimeName</a>
     }
-    <a href="/Anime/New" style="width:250px; height:500px;font-size:100px; display: flex; justify-content:center; align-items: center; background-color:gray;">+</a>
+    <a href="/Anime/New" style="width:250px; height:500px;font-size:100px; display: flex; justify-content:center; align-items: center; background-color:gray;  text-shadow: 2px 2px 4px #000000;">+</a>
 </div>

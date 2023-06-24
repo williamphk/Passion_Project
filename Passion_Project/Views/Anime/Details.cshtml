@@ -15,7 +15,7 @@
     <br />
 }
 
-<h2>@Model.SelectedAnime.AnimeName</h2>
+
 @{
     string imageurl = "/Content/Images/Animes/default.jpg";
     if (Model.SelectedAnime.AnimeHasPic)
@@ -23,9 +23,17 @@
         imageurl = "/Content/Images/Animes/" + Model.SelectedAnime.AnimeID + "." + Model.SelectedAnime.PicExtension;
     }
 }
-<div><img src="@imageurl" /></div>
-<div>Release Date: @Model.SelectedAnime.ReleaseDate.ToString("MMM dd, yyyy", new CultureInfo("en-US"))</div>
-<div>Description: @Model.SelectedAnime.Description</div>
+<div style="display: flex; gap: 25px;">
+    <div>
+        <img src="@imageurl" style="width: 250px;"/>
+    </div>
+    <div>
+        <h2>@Model.SelectedAnime.AnimeName</h2>
+        <div>Release Date: @Model.SelectedAnime.ReleaseDate.ToString("MMM dd, yyyy", new CultureInfo("en-US"))</div>
+        <div>Description: @Model.SelectedAnime.Description</div>
+        <div>Rating: @Model.AverageRating</div>
+    </div>
+</div>
 
 <div style="margin-top: 20px">
     <h3>Genre Associated with: @Model.SelectedAnime.AnimeName</h3>

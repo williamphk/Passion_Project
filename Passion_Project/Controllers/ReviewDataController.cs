@@ -118,6 +118,25 @@ namespace Passion_Project.Controllers
             return Ok(ReviewDto);
         }
 
+        [HttpGet]
+        public IHttpActionResult GetAverageRating(int id)
+        {
+            // Get the reviews for the specified anime
+            List<Review> Reviews = db.Reviews.Where(r => r.AnimeID == id).ToList();
+
+            // If there are no reviews, return a Not Found response
+            if (Reviews.Count == 0)
+            {
+                return NotFound();
+            }
+
+            // Calculate the average rating
+            double AverageRating = Reviews.Average(r => r.Rating);
+
+            // Return the average rating
+            return Ok(AverageRating);
+        }
+
         /// <summary>
         /// Updates a particular review in the system with POST Data input
         /// </summary>
