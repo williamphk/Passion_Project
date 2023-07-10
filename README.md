@@ -1,4 +1,5 @@
 # Passion_Project
+![Project2_desktop](https://github.com/williamphk/Passion_Project/assets/65807958/b3dbaebb-5f09-4429-9a4b-0a2352d30005)
 
 ## Anime Review Website
 A review platform for anime enthusiasts. This web application allows users to browse animes, post their own reviews and read reviews posted by others.
