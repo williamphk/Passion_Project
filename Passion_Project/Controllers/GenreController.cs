@@ -69,6 +69,8 @@ namespace Passion_Project.Controllers
             //Objective: communicate with our genre data api to retrieve one genre
             //curl: https://localhost:44338/api/genredata/findgenre/{id}
 
+            ViewModel.IsAdmin = User.Identity.IsAuthenticated && User.IsInRole("Admin");
+
             string url = "genredata/findgenre/" + id;
             HttpResponseMessage Response = Client.GetAsync(url).Result;
             GenreDto SelectedGenre = Response.Content.ReadAsAsync<GenreDto>().Result;

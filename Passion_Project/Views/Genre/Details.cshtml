@@ -5,10 +5,15 @@
 
 <a href="/Genre/List">Go back to list</a>
 <br />
-<a href="/Genre/Edit/@Model.SelectedGenre.GenreID">Update</a>
-<br />
-<a href="/Genre/DeleteConfirm/@Model.SelectedGenre.GenreID">Delete</a>
-<br />
+@{
+    if (@Model.IsAdmin) 
+    {
+        <a href="/Genre/Edit/@Model.SelectedGenre.GenreID">Update</a>
+        <br />
+        <a href="/Genre/DeleteConfirm/@Model.SelectedGenre.GenreID">Delete</a>
+        <br />
+    }
+}
 
 <h2>@Model.SelectedGenre.GenreName</h2>
 

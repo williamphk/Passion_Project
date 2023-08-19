@@ -7,6 +7,7 @@ namespace Passion_Project.Models.ViewModels
 {
     public class DetailsGenre
     {
+        public bool IsAdmin { get; set; }
         public GenreDto SelectedGenre { get; set; }
         public IEnumerable<AnimeDto> AssociatedAnimes { get; set; }
         public IEnumerable<AnimeDto> AvailableAnimes { get; set; }
