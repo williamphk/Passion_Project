@@ -15,17 +15,22 @@
     <br />
 }
 
-
 @{
-    string imageurl = "/Content/Images/Animes/default.jpg";
+    //Use server rendering to determine an image
+    string pic = "/Content/Images/Animes/default.jpg";
+    string alt = "No Profile Picture Provided.";
     if (Model.SelectedAnime.AnimeHasPic)
     {
-        imageurl = "/Content/Images/Animes/" + Model.SelectedAnime.AnimeID + "." + Model.SelectedAnime.PicExtension;
+        pic = "/Content/Images/Animes/" + Model.SelectedAnime.AnimeID + "." + Model.SelectedAnime.PicExtension;
+        alt = "picture of " + Model.SelectedAnime.AnimeName;
     }
 }
+
 <div style="display: flex; gap: 25px;">
-    <div>
-        <img src="@imageurl" style="width: 250px;"/>
+    <div class="imagecontainer">
+        <a data-lightbox="anime-@Model.SelectedAnime.AnimeID" href="@pic" data-title="@alt">
+            <img src="@pic" alt="@alt" style="width: 250px;" />
+        </a>
     </div>
     <div>
         <h2>@Model.SelectedAnime.AnimeName</h2>
