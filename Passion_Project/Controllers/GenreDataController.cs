@@ -219,7 +219,7 @@ namespace Passion_Project.Controllers
         /// </example>
         [ResponseType(typeof(void))]
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles ="Admin")]
         public IHttpActionResult UpdateGenre(int id, Genre genre)
         {
             if (!ModelState.IsValid)
@@ -269,7 +269,7 @@ namespace Passion_Project.Controllers
         /// </example>
         [ResponseType(typeof(Genre))]
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult AddGenre(Genre genre)
         {
             if (!ModelState.IsValid)
@@ -298,7 +298,7 @@ namespace Passion_Project.Controllers
         /// </example>
         [ResponseType(typeof(Genre))]
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public IHttpActionResult DeleteGenre(int id)
         {
             Genre genre = db.Genres.Find(id);

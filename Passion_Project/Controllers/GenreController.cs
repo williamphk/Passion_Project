@@ -122,7 +122,7 @@ namespace Passion_Project.Controllers
         }
 
         // GET: Genre/New
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult New()
         {
             return View();
@@ -130,7 +130,7 @@ namespace Passion_Project.Controllers
 
         // POST: Genre/Create
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create(Genre genre)
         {
             GetApplicationCookie();
@@ -155,7 +155,7 @@ namespace Passion_Project.Controllers
         }
 
         // GET: Genre/Edit/5
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int id)
         {
             string url = "genredata/findgenre/" + id;
@@ -167,7 +167,7 @@ namespace Passion_Project.Controllers
 
         // POST: Genre/Update/5
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Update(int id, Genre genre)
         {
             GetApplicationCookie();
@@ -189,7 +189,7 @@ namespace Passion_Project.Controllers
         }
 
         // GET: Genre/DeleteConfirm/5
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirm(int id)
         {
             string url = "genredata/findgenre/" + id;
@@ -202,7 +202,7 @@ namespace Passion_Project.Controllers
 
         // POST: Genre/Delete/5
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int id)
         {
             GetApplicationCookie();
