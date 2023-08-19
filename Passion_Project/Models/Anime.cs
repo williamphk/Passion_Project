@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Passion_Project.Models
 {
@@ -12,6 +13,7 @@ namespace Passion_Project.Models
         public int AnimeID { get; set; }
         public string AnimeName { get; set; }
         public DateTime ReleaseDate { get; set; }
+        [AllowHtml]
         public string Description { get; set; }
         public ICollection<Genre> Genres { get; set; }
         public bool AnimeHasPic { get; set; }
@@ -29,6 +31,7 @@ namespace Passion_Project.Models
                 return ReleaseDate.ToString("yyyy-MM-dd");
             }
         }
+        [AllowHtml]
         public string Description { get; set; }
         public bool AnimeHasPic { get; set; }
         public string PicExtension { get; set; }

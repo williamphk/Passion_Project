@@ -11,10 +11,12 @@
             text-decoration: none;
             color: white;
         }
-        a:hover{
-            color:deepskyblue
-        }
+
+            a:hover {
+                color: deepskyblue
+            }
     </style>
+    <script src="https://cdn.tiny.cloud/1/ed0ra4jacxxjgff67mexhb3shp442vylj9bhdqh25gsgn898/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 <body class="bg-dark">
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
@@ -31,7 +33,7 @@
                     <li>@Html.ActionLink("Reviews", "List", "Review", new { area = "" }, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
-                 @Html.Partial("_LoginPartial")
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </nav>
@@ -46,5 +48,14 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script>
+        //rich text WYSIWYG editor
+        //documentation: https://www.tiny.cloud/docs/quick-start/
+        tinymce.init({
+            selector: 'textarea',
+            plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table | align lineheight | numlist bullist indent outdent | emoticons charmap | removeformat',
+        });
+    </script>
 </body>
 </html>

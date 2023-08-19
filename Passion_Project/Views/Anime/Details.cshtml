@@ -30,7 +30,7 @@
     <div>
         <h2>@Model.SelectedAnime.AnimeName</h2>
         <div>Release Date: @Model.SelectedAnime.ReleaseDate.ToString("MMM dd, yyyy", new CultureInfo("en-US"))</div>
-        <div>Description: @Model.SelectedAnime.Description</div>
+        <div>Description: @Html.Raw(@Model.SelectedAnime.Description)</div>
         <div>Rating: @Model.AverageRating</div>
     </div>
 </div>
