@@ -10,7 +10,7 @@ A review platform for anime enthusiasts. This web application allows users to br
 - Associate genres with any animes
 - Users can post their own reviews for any anime
 - Each review displays the reviewer's name, the date of review, the reviewer's rating, and the comment
-- User authentication system, only the owner of the review can edit / delete that review
+- Role based user authentication system and conditional rendering, only the owner of the review can edit / delete that review
 
 ## Technologies Used
 - ASP.NET MVC
