@@ -1,5 +1,7 @@
 # Passion_Project
 <img width="1710" alt="Project Image" src="https://github.com/williamphk/Passion_Project/assets/65807958/1bb7bf84-5960-4eef-8cd1-44f342eca82e">
+Live Preview: http://anime.williamphk.com/
+
 
 ## Anime Review Website
 A review platform for anime enthusiasts. This web application allows users to browse animes, post their own reviews and read reviews posted by others.
