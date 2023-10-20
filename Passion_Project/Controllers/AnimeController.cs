@@ -27,7 +27,7 @@ namespace Passion_Project.Controllers
             };
 
             Client = new HttpClient(handler);
-            Client.BaseAddress = new Uri("https://localhost:44338/api/");
+            Client.BaseAddress = new Uri("https://hikoukianime.azurewebsites.net/api/");
 
         }
         private void GetApplicationCookie()
@@ -189,6 +189,8 @@ namespace Passion_Project.Controllers
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
             HttpResponseMessage Response = Client.PostAsync(url, content).Result;
+
+            Debug.WriteLine(AnimePic);
 
             //update request is successful, and we have image data
             if (Response.IsSuccessStatusCode && AnimePic != null)

@@ -181,7 +181,7 @@ namespace Passion_Project.Controllers
 
             //check if the current user is the owner of the review
             var currentUserId = User.Identity.GetUserId();
-            if (reviewInDb.UserID != currentUserId)
+            if (reviewInDb.UserID != currentUserId && !User.IsInRole("Admin"))
             {
                 return Unauthorized();
             }

@@ -26,7 +26,7 @@ namespace Passion_Project.Controllers
             };
 
             Client = new HttpClient(handler);
-            Client.BaseAddress = new Uri("https://localhost:44338/api/");
+            Client.BaseAddress = new Uri("https://hikoukianime.azurewebsites.net/api/");
 
         }
         private void GetApplicationCookie()

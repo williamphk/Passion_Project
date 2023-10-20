@@ -15,7 +15,7 @@ namespace Passion_Project.Controllers
         static HomeController()
         {
             Client = new HttpClient();
-            Client.BaseAddress = new Uri("https://localhost:44338/api/");
+            Client.BaseAddress = new Uri("https://hikoukianime.azurewebsites.net/api/");
         }
 
         // GET: /
