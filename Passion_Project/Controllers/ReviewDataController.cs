@@ -32,7 +32,18 @@ namespace Passion_Project.Controllers
         [ResponseType(typeof(ReviewDto))]
         public IEnumerable<ReviewDto> ListReviews()
         {
-            List<Review> Reviews = db.Reviews.ToList();
+            bool isAdmin = User.IsInRole("Admin");
+
+            //Admins see all, guests only see their own
+            List<Review> Reviews;
+            Debug.WriteLine("id is " + User.Identity.GetUserId());
+            if (isAdmin) Reviews = db.Reviews.ToList();
+            else
+            {
+                string UserId = User.Identity.GetUserId();
+                Reviews = db.Reviews.Where(b => b.UserID == UserId).ToList();
+            }
+
             List<ReviewDto> ReviewDtos = new List<ReviewDto>();
 
             Reviews.ForEach(r => ReviewDtos.Add(new ReviewDto()
