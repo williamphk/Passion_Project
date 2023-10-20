@@ -12,6 +12,8 @@ namespace Passion_Project.Models.ViewModels
         public IEnumerable<GenreDto> AvailableGenres { get; set; }
         public IEnumerable<ReviewDto> RelatedReviews { get; set; }
         public string CurrentUserID { get; set; }
+
+        public bool IsAdmin { get; set; }
         public double AverageRating { get; set; }
     }
 }

@@ -212,7 +212,9 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AnimeController.cs" />
+    <Compile Include="Controllers\AnimeController.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Controllers\AnimeDataController.cs" />
     <Compile Include="Controllers\GenreController.cs" />
     <Compile Include="Controllers\GenreDataController.cs" />
@@ -265,7 +267,9 @@
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Review.cs" />
+    <Compile Include="Models\Review.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Models\ViewModels\DetailsAnime.cs" />
     <Compile Include="Models\ViewModels\DetailsGenre.cs" />
     <Compile Include="Models\ViewModels\NewReview.cs" />
@@ -385,10 +389,14 @@
     <Content Include="Views\Genre\DeleteConfirm.cshtml" />
     <Content Include="Views\Review\DeleteConfirm.cshtml" />
     <Content Include="Views\Review\Details.cshtml" />
-    <Content Include="Views\Review\Edit.cshtml" />
+    <Content Include="Views\Review\Edit.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Views\Review\Error.cshtml" />
     <Content Include="Views\Review\List.cshtml" />
-    <Content Include="Views\Review\New.cshtml" />
+    <Content Include="Views\Review\New.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\Images\Animes\" />

@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Passion_Project.Models
 {
@@ -12,6 +13,7 @@ namespace Passion_Project.Models
         [Key]
         public int ReviewID { get; set; }
         public int Rating { get; set; }
+        [AllowHtml]
         public string Comment { get; set; }
         public DateTime ReviewDate { get; set; }
 
@@ -27,6 +29,7 @@ namespace Passion_Project.Models
     {
         public int ReviewID { get; set; }
         public int Rating { get; set; }
+        [AllowHtml]
         public string Comment { get; set; }
         public DateTime ReviewDate { get; set; }
         public string FormattedDate

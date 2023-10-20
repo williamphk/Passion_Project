@@ -95,6 +95,7 @@ namespace Passion_Project.Controllers
             ViewModel.AverageRating = AverageRating;
 
             ViewModel.CurrentUserID = User.Identity.GetUserId();
+            ViewModel.IsAdmin = User.IsInRole("Admin");
 
             return View(ViewModel);
         }

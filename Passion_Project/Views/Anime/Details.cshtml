@@ -77,7 +77,7 @@
         <div class="card mt-3 bg-secondary text-white">
             <div class="card-header bg-dark d-flex justify-content-between">
                 <div>Username: @review.UserName</div>
-                @if (@Model.CurrentUserID == @review.UserID)
+                @if (@Model.CurrentUserID == @review.UserID || Model.IsAdmin)
                 {
                     <div>
                         <a href="/Review/Edit/@review.ReviewID">Update</a>
@@ -87,7 +87,7 @@
             </div>
             <div class="card-body bg-dark">
                 <div>Rating: @review.Rating / 5</div>
-                <div>Comment: @review.Comment</div>
+                <div>Comment: @Html.Raw(@review.Comment)</div>
             </div>
             <div class="card-footer bg-dark">
                 Reviewed on @review.ReviewDate.ToString("MMM dd, yyyy", new CultureInfo("en-US"))
