@@ -58,11 +58,12 @@ namespace Passion_Project.Controllers
         }
 
         // GET: Review/List
+        [Authorize]
         public ActionResult List()
         {
             //Objective: communicate with review data api to retrieve a list of reviews
             //curl: https://localhost:44338/api/reviewdata/listreviews
-
+            GetApplicationCookie();
             string url = "reviewdata/listreviews";
             HttpResponseMessage Response = Client.GetAsync(url).Result;
             IEnumerable<ReviewDto> Reviews = Response.Content.ReadAsAsync<IEnumerable<ReviewDto>>().Result;

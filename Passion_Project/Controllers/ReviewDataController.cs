@@ -30,10 +30,10 @@ namespace Passion_Project.Controllers
         /// </example>
         [HttpGet]
         [ResponseType(typeof(ReviewDto))]
+        [Authorize]
         public IEnumerable<ReviewDto> ListReviews()
         {
             bool isAdmin = User.IsInRole("Admin");
-
             //Admins see all, guests only see their own
             List<Review> Reviews;
             Debug.WriteLine("id is " + User.Identity.GetUserId());
@@ -43,7 +43,6 @@ namespace Passion_Project.Controllers
                 string UserId = User.Identity.GetUserId();
                 Reviews = db.Reviews.Where(b => b.UserID == UserId).ToList();
             }
-
             List<ReviewDto> ReviewDtos = new List<ReviewDto>();
 
             Reviews.ForEach(r => ReviewDtos.Add(new ReviewDto()
@@ -109,6 +108,8 @@ namespace Passion_Project.Controllers
         [HttpGet]
         public IHttpActionResult FindReview(int id)
         {
+            bool isAdmin = User.IsInRole("Admin");
+            Debug.WriteLine(isAdmin);
             Review Review = db.Reviews.Find(id);
             ReviewDto ReviewDto = new ReviewDto()
             {
