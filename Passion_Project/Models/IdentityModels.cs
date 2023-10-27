@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Data.Entity.SqlServer;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -18,11 +19,20 @@ namespace Passion_Project.Models
         }
     }
 
+    public class MyConfiguration : DbConfiguration
+    {
+        public MyConfiguration()
+        {
+            SetExecutionStrategy("System.Data.SqlClient", () => new SqlAzureExecutionStrategy());
+        }
+    }
+
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            DbConfiguration.SetConfiguration(new MyConfiguration());
         }
 
         public DbSet<Anime> Animes { get; set; }
